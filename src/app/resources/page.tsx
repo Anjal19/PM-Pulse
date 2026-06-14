@@ -191,7 +191,7 @@ export default function ResourcesPage() {
       <div className="mb-10">
         <h1 className="text-4xl font-bold text-google-dark tracking-tight">Resources</h1>
         <p className="text-google-gray mt-2 text-lg">
-          Hand-picked books, courses, templates, and tools — organised so you don't have to.
+          Hand-picked books, courses, templates, and tools — organised so you don&apos;t have to.
         </p>
       </div>
 

@@ -102,7 +102,7 @@ export default function SessionsPage() {
       <div className="mb-12">
         <h1 className="text-4xl font-bold text-google-dark tracking-tight">Sessions</h1>
         <p className="text-google-gray mt-2 text-lg">
-          1:1 mentorship and group sessions with PMs who've been where you are.
+          1:1 mentorship and group sessions with PMs who&apos;ve been where you are.
         </p>
       </div>
 

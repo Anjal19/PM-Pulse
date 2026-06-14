@@ -129,7 +129,7 @@ export default function HomePage() {
       {/* Features */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
         <div className="text-center mb-12">
-          <h2 className="section-title text-3xl">Everything you need, nothing you don't</h2>
+          <h2 className="section-title text-3xl">Everything you need, nothing you don&apos;t</h2>
           <p className="section-subtitle">Four pillars designed to take you from curious to hired.</p>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -224,7 +224,7 @@ export default function HomePage() {
                     <Star key={i} size={14} className="fill-yellow-400 text-yellow-400" />
                   ))}
                 </div>
-                <p className="text-google-dark text-sm leading-relaxed">"{t.quote}"</p>
+                <p className="text-google-dark text-sm leading-relaxed">&ldquo;{t.quote}&rdquo;</p>
                 <div className="mt-4">
                   <div className="font-semibold text-google-dark text-sm">{t.name}</div>
                   <div className="text-google-gray text-xs">{t.role}</div>
