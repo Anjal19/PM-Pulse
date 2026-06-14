@@ -1,0 +1,51 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-inter), 'Google Sans', Roboto, Arial, sans-serif;
+  color: #202124;
+  background-color: #ffffff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+@layer components {
+  .btn-primary {
+    @apply px-6 py-2.5 rounded-full bg-google-blue text-white text-sm font-medium hover:bg-google-blue-dark transition-colors;
+  }
+
+  .btn-secondary {
+    @apply px-6 py-2.5 rounded-full border border-google-gray-border text-google-dark text-sm font-medium hover:bg-google-gray-light transition-colors;
+  }
+
+  .chip {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+
+  .card {
+    @apply bg-white rounded-2xl border border-google-gray-border shadow-card hover:shadow-card-hover transition-shadow;
+  }
+
+  .section-title {
+    @apply text-2xl font-semibold text-google-dark tracking-tight;
+  }
+
+  .section-subtitle {
+    @apply text-google-gray text-base mt-2;
+  }
+}
