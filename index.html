@@ -1,0 +1,1635 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM Pulse — Product Management in the Age of AI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0f0e0c;
+    --paper: #f5f0e8;
+    --cream: #ede7d6;
+    --rust: #c44b2b;
+    --gold: #c89a3c;
+    --sage: #4a6741;
+    --steel: #3a5068;
+    --muted: #7a7060;
+    --rule: #d4c9b0;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 300;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ─── MASTHEAD ─── */
+  .masthead {
+    border-bottom: 3px double var(--ink);
+    padding: 0 0 0 0;
+    position: relative;
+  }
+
+  .masthead-top {
+    border-bottom: 1px solid var(--ink);
+    padding: 10px 48px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.1em;
+    color: var(--muted);
+  }
+
+  .masthead-main {
+    padding: 32px 48px 24px;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .masthead-tagline-left {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .masthead-title {
+    text-align: center;
+  }
+
+  .masthead-title .title-main {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(52px, 8vw, 88px);
+    font-weight: 900;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    display: block;
+  }
+
+  .masthead-title .title-sub {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--rust);
+    display: block;
+    margin-top: 10px;
+  }
+
+  .masthead-nav {
+    display: flex;
+    justify-content: flex-end;
+    gap: 24px;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .masthead-nav a {
+    text-decoration: none;
+    color: var(--ink);
+    border-bottom: 1px solid transparent;
+    transition: border-color 0.2s, color 0.2s;
+    padding-bottom: 2px;
+  }
+
+  .masthead-nav a:hover { color: var(--rust); border-color: var(--rust); }
+
+  /* ─── HERO BANNER ─── */
+  .hero-band {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-band::before {
+    content: 'PM';
+    position: absolute;
+    right: -20px;
+    top: -30px;
+    font-family: 'Playfair Display', serif;
+    font-size: 280px;
+    font-weight: 900;
+    opacity: 0.06;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .hero-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .hero-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(32px, 4vw, 52px);
+    font-weight: 700;
+    line-height: 1.15;
+    margin-bottom: 20px;
+  }
+
+  .hero-headline em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-body {
+    font-size: 15px;
+    line-height: 1.8;
+    color: #c8bfaf;
+    margin-bottom: 28px;
+  }
+
+  .hero-meta {
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .hero-meta-item {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .hero-meta-item .label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #7a7060;
+  }
+
+  .hero-meta-item .value {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--paper);
+  }
+
+  .hero-newsletter {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 2px;
+    padding: 32px;
+  }
+
+  .hero-newsletter h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 8px;
+    color: var(--paper);
+  }
+
+  .hero-newsletter p {
+    font-size: 13px;
+    color: #a09080;
+    margin-bottom: 20px;
+    line-height: 1.6;
+  }
+
+  .subscribe-form {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .subscribe-form input {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 12px 16px;
+    border-radius: 2px;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+
+  .subscribe-form input::placeholder { color: #5a5040; }
+  .subscribe-form input:focus { border-color: var(--gold); }
+
+  .btn-primary {
+    background: var(--rust);
+    color: var(--paper);
+    border: none;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: 13px 24px;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: background 0.2s, transform 0.1s;
+  }
+
+  .btn-primary:hover { background: #a83820; }
+  .btn-primary:active { transform: scale(0.98); }
+
+  .subscribe-note {
+    font-size: 11px;
+    color: #5a5040;
+    letter-spacing: 0.04em;
+  }
+
+  /* ─── SECTION STRUCTURE ─── */
+  .section-rule {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 32px 48px 0;
+  }
+
+  .section-rule-text {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--muted);
+    white-space: nowrap;
+  }
+
+  .section-rule-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  /* ─── FEATURED GRID ─── */
+  .featured-grid {
+    padding: 24px 48px 48px;
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+    margin: 0 48px;
+  }
+
+  .card {
+    background: var(--paper);
+    padding: 32px;
+    cursor: pointer;
+    transition: background 0.15s;
+    position: relative;
+  }
+
+  .card:hover { background: var(--cream); }
+
+  .card-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    padding: 4px 10px;
+    border-radius: 2px;
+    display: inline-block;
+    margin-bottom: 16px;
+    font-weight: 500;
+  }
+
+  .tag-ai { background: #fff3e0; color: #a0600a; }
+  .tag-strategy { background: #e8f0ea; color: #2d5a27; }
+  .tag-craft { background: #e8ecf2; color: #2a4060; }
+  .tag-mindset { background: #fce8e4; color: #8a2820; }
+  .tag-research { background: #f0ecff; color: #4a2080; }
+
+  .card-headline {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+
+  .card.featured .card-headline { font-size: 32px; }
+
+  .card-excerpt {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .card-byline {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 12px;
+    color: var(--muted);
+    border-top: 1px solid var(--rule);
+    padding-top: 16px;
+  }
+
+  .card-byline strong { color: var(--ink); font-weight: 600; }
+
+  .card-number {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+  }
+
+  /* ─── MODULES / CURRICULUM ─── */
+  .modules-section {
+    padding: 48px;
+    background: var(--cream);
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    margin-top: 48px;
+  }
+
+  .modules-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 32px;
+  }
+
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 700;
+  }
+
+  .modules-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    background: var(--rule);
+    border: 1px solid var(--rule);
+  }
+
+  .module-card {
+    background: var(--paper);
+    padding: 28px 24px;
+    transition: background 0.15s;
+  }
+
+  .module-card:hover { background: #fff; }
+
+  .module-num {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--muted);
+    margin-bottom: 12px;
+  }
+
+  .module-icon {
+    font-size: 28px;
+    margin-bottom: 12px;
+    display: block;
+  }
+
+  .module-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    font-weight: 700;
+    margin-bottom: 8px;
+    line-height: 1.3;
+  }
+
+  .module-topics {
+    list-style: none;
+    font-size: 12px;
+    color: var(--muted);
+    line-height: 2;
+  }
+
+  .module-topics li::before {
+    content: '→ ';
+    color: var(--rust);
+  }
+
+  /* ─── FRAMEWORKS ─── */
+  .frameworks-section {
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+  }
+
+  .framework-card {
+    border: 1px solid var(--rule);
+    padding: 32px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .framework-card::after {
+    content: attr(data-letter);
+    position: absolute;
+    bottom: -16px;
+    right: -8px;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    font-weight: 900;
+    opacity: 0.06;
+    line-height: 1;
+  }
+
+  .framework-kicker {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 12px;
+  }
+
+  .framework-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 16px;
+  }
+
+  .framework-desc {
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .framework-points {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .framework-points li {
+    display: flex;
+    gap: 12px;
+    font-size: 13px;
+    align-items: flex-start;
+  }
+
+  .framework-points li .pt-label {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    background: var(--ink);
+    color: var(--paper);
+    padding: 2px 7px;
+    border-radius: 2px;
+    white-space: nowrap;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+
+  /* ─── AI SPOTLIGHT ─── */
+  .ai-spotlight {
+    background: var(--ink);
+    color: var(--paper);
+    padding: 64px 48px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ai-spotlight::before {
+    content: '';
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(200,154,60,0.15) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .ai-spotlight-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    margin-bottom: 40px;
+  }
+
+  .ai-spotlight-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+    font-weight: 700;
+  }
+
+  .ai-spotlight-title span { color: var(--gold); font-style: italic; }
+
+  .ai-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1px;
+    background: rgba(255,255,255,0.08);
+  }
+
+  .ai-card {
+    background: var(--ink);
+    padding: 32px;
+    border: 1px solid rgba(255,255,255,0.06);
+    transition: background 0.2s;
+  }
+
+  .ai-card:hover { background: #1a1916; }
+
+  .ai-card-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+    display: block;
+  }
+
+  .ai-card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--paper);
+  }
+
+  .ai-card-body {
+    font-size: 13px;
+    line-height: 1.75;
+    color: #908070;
+  }
+
+  .ai-card-tag {
+    display: inline-block;
+    margin-top: 16px;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    border-bottom: 1px solid var(--gold);
+    padding-bottom: 2px;
+  }
+
+  /* ─── QUOTE PULL ─── */
+  .pullquote {
+    padding: 56px 80px;
+    border-top: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+    text-align: center;
+    position: relative;
+  }
+
+  .pullquote::before {
+    content: '"';
+    position: absolute;
+    top: 0;
+    left: 48px;
+    font-family: 'Playfair Display', serif;
+    font-size: 120px;
+    font-weight: 900;
+    color: var(--rule);
+    line-height: 1;
+  }
+
+  .pullquote blockquote {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(22px, 3vw, 34px);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.4;
+    color: var(--ink);
+    max-width: 800px;
+    margin: 0 auto 20px;
+  }
+
+  .pullquote cite {
+    font-family: 'DM Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-style: normal;
+  }
+
+  /* ─── BLOG POSTS ─── */
+  .posts-section {
+    padding: 48px;
+  }
+
+  .posts-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    border: 1px solid var(--rule);
+    background: var(--rule);
+    margin-top: 24px;
+  }
+
+  .post-row {
+    background: var(--paper);
+    display: grid;
+    grid-template-columns: 80px 1fr auto;
+    gap: 24px;
+    padding: 24px 32px;
+    align-items: center;
+    transition: background 0.15s;
+    cursor: pointer;
+  }
+
+  .post-row:hover { background: var(--cream); }
+
+  .post-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--rule);
+    text-align: center;
+  }
+
+  .post-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 4px;
+  }
+
+  .post-excerpt {
+    font-size: 13px;
+    color: var(--muted);
+    line-height: 1.6;
+  }
+
+  .post-meta {
+    text-align: right;
+    flex-shrink: 0;
+  }
+
+  .post-tag-inline {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .post-read {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    color: var(--rust);
+    letter-spacing: 0.08em;
+  }
+
+  /* ─── NEWSLETTER STRIP ─── */
+  .newsletter-strip {
+    background: var(--rust);
+    color: var(--paper);
+    padding: 48px;
+    display: flex;
+    align-items: center;
+    gap: 48px;
+  }
+
+  .newsletter-strip h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 32px;
+    font-weight: 700;
+    flex: 1;
+    min-width: 200px;
+  }
+
+  .newsletter-strip p {
+    flex: 1.5;
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(245,240,232,0.8);
+  }
+
+  .strip-form {
+    display: flex;
+    gap: 0;
+    flex: 2;
+    min-width: 280px;
+  }
+
+  .strip-form input {
+    flex: 1;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid rgba(255,255,255,0.3);
+    border-right: none;
+    color: var(--paper);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    padding: 13px 18px;
+    outline: none;
+    border-radius: 2px 0 0 2px;
+  }
+
+  .strip-form input::placeholder { color: rgba(245,240,232,0.4); }
+
+  .strip-form button {
+    background: var(--ink);
+    color: var(--paper);
+    border: 1px solid var(--ink);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    padding: 13px 24px;
+    cursor: pointer;
+    border-radius: 0 2px 2px 0;
+    white-space: nowrap;
+    transition: background 0.15s;
+  }
+
+  .strip-form button:hover { background: #2a2622; }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--ink);
+    color: #6a6050;
+    padding: 48px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    gap: 32px;
+    border-top: 3px double var(--rust);
+  }
+
+  .footer-brand .brand-name {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--paper);
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .footer-brand p {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #5a5040;
+  }
+
+  .footer-col h4 {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 8px; }
+
+  .footer-col ul li a {
+    font-size: 13px;
+    color: #6a6050;
+    text-decoration: none;
+    transition: color 0.15s;
+  }
+
+  .footer-col ul li a:hover { color: var(--paper); }
+
+  .footer-bottom {
+    background: var(--ink);
+    border-top: 1px solid #2a2620;
+    padding: 16px 48px;
+    display: flex;
+    justify-content: space-between;
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.08em;
+    color: #3a3020;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-kicker { animation: fadeInUp 0.6s ease both; }
+  .hero-headline { animation: fadeInUp 0.6s 0.1s ease both; }
+  .hero-body { animation: fadeInUp 0.6s 0.2s ease both; }
+  .hero-meta { animation: fadeInUp 0.6s 0.3s ease both; }
+  .hero-newsletter { animation: fadeInUp 0.6s 0.15s ease both; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    .masthead-main { grid-template-columns: 1fr; text-align: center; }
+    .masthead-nav { justify-content: center; }
+    .hero-band { grid-template-columns: 1fr; }
+    .featured-grid { grid-template-columns: 1fr; margin: 0 24px; }
+    .modules-grid { grid-template-columns: repeat(2, 1fr); }
+    .frameworks-section { grid-template-columns: 1fr; }
+    .ai-grid { grid-template-columns: 1fr; }
+    .newsletter-strip { flex-direction: column; }
+    footer { grid-template-columns: 1fr 1fr; }
+    .masthead-top, .masthead-main, .posts-section, .modules-section,
+    .frameworks-section, .ai-spotlight, .pullquote, footer, .footer-bottom { padding-left: 24px; padding-right: 24px; }
+    .section-rule { padding-left: 24px; padding-right: 24px; }
+    .post-row { grid-template-columns: 48px 1fr; }
+    .post-meta { display: none; }
+  }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(15,14,12,0.85);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--paper);
+    max-width: 680px;
+    width: 100%;
+    max-height: 85vh;
+    overflow-y: auto;
+    border-top: 4px solid var(--rust);
+  }
+
+  .modal-header {
+    padding: 32px 40px 24px;
+    border-bottom: 1px solid var(--rule);
+    position: sticky;
+    top: 0;
+    background: var(--paper);
+  }
+
+  .modal-tag {
+    font-family: 'DM Mono', monospace;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--rust);
+    margin-bottom: 10px;
+    display: block;
+  }
+
+  .modal-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.25;
+    margin-bottom: 12px;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    background: none;
+    border: 1px solid var(--rule);
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--muted);
+    border-radius: 2px;
+    transition: all 0.15s;
+  }
+
+  .modal-close:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+
+  .modal-body {
+    padding: 32px 40px 40px;
+    font-size: 15px;
+    line-height: 1.8;
+    color: #3a3020;
+  }
+
+  .modal-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    font-weight: 700;
+    margin: 24px 0 10px;
+    color: var(--ink);
+  }
+
+  .modal-body p { margin-bottom: 14px; }
+
+  .modal-body ul {
+    margin: 10px 0 14px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .key-insight {
+    background: var(--cream);
+    border-left: 3px solid var(--rust);
+    padding: 16px 20px;
+    margin: 20px 0;
+    font-style: italic;
+    color: var(--ink);
+  }
+</style>
+</head>
+<body>
+
+<!-- MASTHEAD -->
+<header class="masthead">
+  <div class="masthead-top">
+    <span>ISSUE NO. 1 · MAY 2026</span>
+    <span>PRODUCT MANAGEMENT FOR THE AI ERA</span>
+    <span>WEEKLY · FREE</span>
+  </div>
+  <div class="masthead-main">
+    <div class="masthead-tagline-left">
+      Frameworks.<br>Mindsets.<br>Real Craft.
+    </div>
+    <div class="masthead-title">
+      <span class="title-main">PM Pulse</span>
+      <span class="title-sub">Where Product Meets Intelligence</span>
+    </div>
+    <nav class="masthead-nav">
+      <a href="#articles">Articles</a>
+      <a href="#curriculum">Curriculum</a>
+      <a href="#ai">AI for PMs</a>
+      <a href="#about">About</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero-band">
+  <div>
+    <p class="hero-kicker">↳ Launching Now — Issue 001</p>
+    <h1 class="hero-headline">
+      The PM who understands <em>AI</em> is the PM who ships what matters.
+    </h1>
+    <p class="hero-body">
+      PM Pulse is a resource hub and newsletter for product managers navigating the real craft — from mastering the problem space to building with AI. Grounded in IIT Roorkee's AI-forward PM curriculum, built for the trenches.
+    </p>
+    <div class="hero-meta">
+      <div class="hero-meta-item">
+        <span class="label">Topics Covered</span>
+        <span class="value">12 Modules</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Frameworks</span>
+        <span class="value">40+ Tools</span>
+      </div>
+      <div class="hero-meta-item">
+        <span class="label">Cadence</span>
+        <span class="value">Weekly</span>
+      </div>
+    </div>
+  </div>
+  <div class="hero-newsletter">
+    <h3>Get the newsletter</h3>
+    <p>One essay every week. PM frameworks, AI strategy, and the mindsets that actually move products forward. No fluff.</p>
+    <div class="subscribe-form">
+      <input type="text" placeholder="Your name">
+      <input type="email" placeholder="your@email.com">
+      <button class="btn-primary">Subscribe — It's Free</button>
+      <span class="subscribe-note">No spam. Unsubscribe anytime.</span>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED ARTICLES -->
+<div id="articles" class="section-rule" style="margin-top:48px">
+  <span class="section-rule-text">Featured this issue</span>
+  <span class="section-rule-line"></span>
+</div>
+
+<div style="padding: 24px 48px 0;">
+  <div class="featured-grid">
+
+    <div class="card featured" onclick="openModal('mindset')">
+      <span class="card-tag tag-mindset">Mindset</span>
+      <div class="card-number">01</div>
+      <h2 class="card-headline">PM ≠ CEO. You Are the Chief Alignment Officer.</h2>
+      <p class="card-excerpt">The "CEO of the product" framing is seductive — and wrong. PMs have no formal authority, no direct reports, and limited decision rights. So how do the best PMs ship great products? They align. Here's what that actually means and how to build that muscle.</p>
+      <div class="card-byline">
+        <strong>PM Pulse</strong>
+        <span>·</span>
+        <span>8 min read</span>
+        <span>·</span>
+        <span>Session 1 Foundation</span>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-direction:column;gap:1px;background:var(--rule)">
+      <div class="card" onclick="openModal('problem')">
+        <span class="card-tag tag-strategy">Strategy</span>
+        <div class="card-number" style="font-size:32px">02</div>
+        <h2 class="card-headline">Fall in Love with the Problem, Not the Solution</h2>
+        <p class="card-excerpt">The most dangerous PM habit is jumping to solutions before understanding the problem. Here's why it happens — and how to stop.</p>
+        <div class="card-byline">
+          <strong>PM Pulse</strong> · <span>6 min read</span>
+        </div>
+      </div>
+      <div class="card" onclick="openModal('ai-strategy')">
+        <span class="card-tag tag-ai">AI Strategy</span>
+        <div class="card-number" style="font-size:32px">03</div>
+        <h2 class="card-headline">AI-First vs AI-Added: A Decision Framework</h2>
+        <p class="card-excerpt">Is AI your product, or a feature? The Build/Buy/Integrate decision tree that every PM shipping AI in 2026 needs.</p>
+        <div class="card-byline">
+          <strong>PM Pulse</strong> · <span>7 min read</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- CURRICULUM -->
+<section id="curriculum" class="modules-section">
+  <div class="modules-header">
+    <div>
+      <p style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:var(--rust);margin-bottom:8px">The Curriculum</p>
+      <h2 class="section-title">What We Cover</h2>
+    </div>
+    <p style="font-size:13px;color:var(--muted);max-width:280px;text-align:right;line-height:1.7">Based on the IITREICT PM·AI·H programme — 12 modules, from mindset to metrics.</p>
+  </div>
+  <div class="modules-grid">
+
+    <div class="module-card">
+      <p class="module-num">MODULE 01</p>
+      <span class="module-icon">🧭</span>
+      <h3 class="module-name">PM Mindset & Mandate</h3>
+      <ul class="module-topics">
+        <li>The Alignment Officer model</li>
+        <li>Core decision pillars</li>
+        <li>Tensions PMs manage daily</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <p class="module-num">MODULE 02</p>
+      <span class="module-icon">🔍</span>
+      <h3 class="module-name">Mastering Problem Space</h3>
+      <ul class="module-topics">
+        <li>Problem vs solution trap</li>
+        <li>User interview mastery</li>
+        <li>Root cause frameworks</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <p class="module-num">MODULE 03</p>
+      <span class="module-icon">❤️</span>
+      <h3 class="module-name">User Empathy Frameworks</h3>
+      <ul class="module-topics">
+        <li>Empathy mapping</li>
+        <li>Affinity mapping</li>
+        <li>Persona construction</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <p class="module-num">MODULE 04</p>
+      <span class="module-icon">🌟</span>
+      <h3 class="module-name">Vision, Strategy & North Star</h3>
+      <ul class="module-topics">
+        <li>Product vision crafting</li>
+        <li>North Star metrics</li>
+        <li>MVP strategy</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <p class="module-num">MODULE 05</p>
+      <span class="module-icon">✏️</span>
+      <h3 class="module-name">Design Thinking & Wireframing</h3>
+      <ul class="module-topics">
+        <li>Design thinking process</li>
+        <li>Figma 101 & 201</li>
+        <li>Usability testing</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <p class="module-num">MODULE 06</p>
+      <span class="module-icon">📋</span>
+      <h3 class="module-name">PRDs & Engineering Comms</h3>
+      <ul class="module-topics">
+        <li>Writing for engineers</li>
+        <li>User story art</li>
+        <li>Stakeholder management</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <p class="module-num">MODULE 07–09</p>
+      <span class="module-icon">⚡</span>
+      <h3 class="module-name">Agile, Jira & Design Systems</h3>
+      <ul class="module-topics">
+        <li>Agile fundamentals</li>
+        <li>Agile at scale (Slack case)</li>
+        <li>Design systems</li>
+      </ul>
+    </div>
+
+    <div class="module-card">
+      <p class="module-num">MODULE 10–12</p>
+      <span class="module-icon">🤖</span>
+      <h3 class="module-name">AI for PMs</h3>
+      <ul class="module-topics">
+        <li>LLMs, RAG & embeddings</li>
+        <li>AI product strategy</li>
+        <li>Responsible AI</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- FRAMEWORKS -->
+<section class="frameworks-section">
+  <div>
+    <div class="section-rule" style="padding:0 0 24px">
+      <span class="section-rule-text">Frameworks</span>
+      <span class="section-rule-line"></span>
+    </div>
+    <div class="framework-card" data-letter="A" onclick="openModal('framework-align')">
+      <p class="framework-kicker">Core Model</p>
+      <h3 class="framework-title">The Alignment Triangle</h3>
+      <p class="framework-desc">Every PM decision sits at the intersection of three competing forces. Understanding this triangle is the first step to making better calls — and fewer rework cycles.</p>
+      <ul class="framework-points">
+        <li><span class="pt-label">User</span> What the user actually needs vs. what they say they want</li>
+        <li><span class="pt-label">Business</span> Revenue, retention, and the metrics that matter</li>
+        <li><span class="pt-label">Eng</span> Technical feasibility and architectural constraints</li>
+      </ul>
+    </div>
+  </div>
+
+  <div style="display:flex;flex-direction:column;gap:24px">
+    <div class="framework-card" data-letter="B" onclick="openModal('framework-ai')">
+      <p class="framework-kicker">AI Strategy</p>
+      <h3 class="framework-title">Build / Buy / Integrate</h3>
+      <p class="framework-desc">The strategic decision tree for AI-era PMs. Not every problem needs you to build a model. Know when to call the API.</p>
+      <ul class="framework-points">
+        <li><span class="pt-label">Build</span> Unique data moat + core differentiator</li>
+        <li><span class="pt-label">Buy</span> Commodity need + speed matters</li>
+        <li><span class="pt-label">Integrate</span> Good-enough API + cost sensitivity</li>
+        <li><span class="pt-label">Fine-tune</span> Base model + domain-specific accuracy</li>
+      </ul>
+    </div>
+
+    <div class="framework-card" data-letter="N" onclick="openModal('framework-northstar')">
+      <p class="framework-kicker">Metrics</p>
+      <h3 class="framework-title">The North Star Framework</h3>
+      <p class="framework-desc">One metric that captures the value your product creates for users, aligned to business outcomes. Everything else is an input metric.</p>
+      <ul class="framework-points">
+        <li><span class="pt-label">Reflects</span> Core user value, not just business value</li>
+        <li><span class="pt-label">Leads</span> Predictive of long-term retention and growth</li>
+        <li><span class="pt-label">Owns</span> A single team can measurably move it</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- PULL QUOTE -->
+<div class="pullquote">
+  <blockquote>Product Management is not a role. It is a way of thinking. Tools can be learned. Frameworks can be memorized. Mindset must be built.</blockquote>
+  <cite>— Session 1 · PM Mindset & Mandate</cite>
+</div>
+
+<!-- AI SPOTLIGHT -->
+<section id="ai" class="ai-spotlight">
+  <div class="ai-spotlight-header">
+    <h2 class="ai-spotlight-title">AI for <span>Product</span> Managers</h2>
+    <span style="font-family:'DM Mono',monospace;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:#5a5040">Module 4 Series</span>
+  </div>
+
+  <div class="ai-grid">
+    <div class="ai-card" onclick="openModal('ai-foundations')">
+      <span class="ai-card-icon">🧠</span>
+      <h3 class="ai-card-title">AI Foundations for PMs</h3>
+      <p class="ai-card-body">LLMs, tokens, context windows, embeddings, and RAG — explained without the jargon. You don't need to code AI. You need to understand it well enough to build great products with it.</p>
+      <span class="ai-card-tag">Read the explainer →</span>
+    </div>
+
+    <div class="ai-card" onclick="openModal('ai-productivity')">
+      <span class="ai-card-icon">⚡</span>
+      <h3 class="ai-card-title">AI PM Productivity Stack</h3>
+      <p class="ai-card-body">How to use AI tools to 10x your PM output — from writing better PRDs to running faster user research synthesis. Real workflows, real tools, real results.</p>
+      <span class="ai-card-tag">See the stack →</span>
+    </div>
+
+    <div class="ai-card" onclick="openModal('responsible-ai')">
+      <span class="ai-card-icon">⚖️</span>
+      <h3 class="ai-card-title">Responsible AI — The PM's Checklist</h3>
+      <p class="ai-card-body">Bias, hallucinations, privacy, and accountability. Every PM shipping AI products needs a responsible AI framework before launch — not after the incident.</p>
+      <span class="ai-card-tag">Get the checklist →</span>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG POST LIST -->
+<section class="posts-section">
+  <div class="section-rule" style="padding:0 0 24px">
+    <span class="section-rule-text">All Articles</span>
+    <span class="section-rule-line"></span>
+  </div>
+
+  <div class="posts-list">
+    <div class="post-row" onclick="openModal('mindset')">
+      <div class="post-num">01</div>
+      <div>
+        <h3 class="post-title">PM ≠ CEO. You Are the Chief Alignment Officer.</h3>
+        <p class="post-excerpt">Why the popular PM framing is wrong, and what to replace it with.</p>
+      </div>
+      <div class="post-meta">
+        <span class="post-tag-inline">Mindset</span>
+        <span class="post-read">8 min</span>
+      </div>
+    </div>
+
+    <div class="post-row" onclick="openModal('problem')">
+      <div class="post-num">02</div>
+      <div>
+        <h3 class="post-title">Fall in Love with the Problem, Not the Solution</h3>
+        <p class="post-excerpt">The single most common PM mistake — and how to unlearn it systematically.</p>
+      </div>
+      <div class="post-meta">
+        <span class="post-tag-inline">Strategy</span>
+        <span class="post-read">6 min</span>
+      </div>
+    </div>
+
+    <div class="post-row" onclick="openModal('user-interview')">
+      <div class="post-num">03</div>
+      <div>
+        <h3 class="post-title">The Art of the User Interview: What Most PMs Get Wrong</h3>
+        <p class="post-excerpt">Good vs bad interview techniques, the Flipkart Voice Search case, and how to actually listen.</p>
+      </div>
+      <div class="post-meta">
+        <span class="post-tag-inline">Research</span>
+        <span class="post-read">9 min</span>
+      </div>
+    </div>
+
+    <div class="post-row" onclick="openModal('ai-strategy')">
+      <div class="post-num">04</div>
+      <div>
+        <h3 class="post-title">AI-First vs AI-Added: How to Decide Where AI Belongs in Your Product</h3>
+        <p class="post-excerpt">The Build/Buy/Integrate framework for 2026. When API calls beat model training every time.</p>
+      </div>
+      <div class="post-meta">
+        <span class="post-tag-inline">AI Strategy</span>
+        <span class="post-read">7 min</span>
+      </div>
+    </div>
+
+    <div class="post-row" onclick="openModal('stakeholder')">
+      <div class="post-num">05</div>
+      <div>
+        <h3 class="post-title">Stakeholder Management: The Skills Nobody Teaches You</h3>
+        <p class="post-excerpt">The Slack case study that broke a product team — and the communication frameworks that would have prevented it.</p>
+      </div>
+      <div class="post-meta">
+        <span class="post-tag-inline">Craft</span>
+        <span class="post-read">11 min</span>
+      </div>
+    </div>
+
+    <div class="post-row" onclick="openModal('metrics')">
+      <div class="post-num">06</div>
+      <div>
+        <h3 class="post-title">Metrics That Matter: Finding Your North Star Without Getting Lost</h3>
+        <p class="post-excerpt">Analytics frameworks, Mixpanel mastery, and why your current dashboard is probably lying to you.</p>
+      </div>
+      <div class="post-meta">
+        <span class="post-tag-inline">Analytics</span>
+        <span class="post-read">8 min</span>
+      </div>
+    </div>
+
+    <div class="post-row" onclick="openModal('prd')">
+      <div class="post-num">07</div>
+      <div>
+        <h3 class="post-title">Writing for Engineers: The PRD That Actually Gets Read</h3>
+        <p class="post-excerpt">What engineers need from a spec — and the formatting, framing, and precision that earns their trust.</p>
+      </div>
+      <div class="post-meta">
+        <span class="post-tag-inline">Craft</span>
+        <span class="post-read">10 min</span>
+      </div>
+    </div>
+
+    <div class="post-row" onclick="openModal('gtm')">
+      <div class="post-num">08</div>
+      <div>
+        <h3 class="post-title">GTM Strategy & Growth Mechanics for Product Teams</h3>
+        <p class="post-excerpt">Go-to-market isn't just marketing's job. How PMs shape launch strategy, distribution, and growth loops.</p>
+      </div>
+      <div class="post-meta">
+        <span class="post-tag-inline">Strategy</span>
+        <span class="post-read">7 min</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NEWSLETTER STRIP -->
+<section class="newsletter-strip">
+  <h2>Never miss an issue.</h2>
+  <p>PM Pulse drops every week with one sharp essay, one framework, and one AI insight — all grounded in real product craft. Join the list.</p>
+  <div class="strip-form">
+    <input type="email" placeholder="your@email.com">
+    <button>Subscribe Free</button>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="about">
+  <div class="footer-brand">
+    <span class="brand-name">PM Pulse</span>
+    <p>A PM resource hub and weekly newsletter for product managers building in the age of AI. Rooted in real curriculum, written for real practitioners.</p>
+  </div>
+
+  <div class="footer-col">
+    <h4>Articles</h4>
+    <ul>
+      <li><a href="#">Mindset & Mandate</a></li>
+      <li><a href="#">Problem Space</a></li>
+      <li><a href="#">User Research</a></li>
+      <li><a href="#">Vision & Strategy</a></li>
+      <li><a href="#">PRDs & Specs</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-col">
+    <h4>AI Series</h4>
+    <ul>
+      <li><a href="#">AI Foundations</a></li>
+      <li><a href="#">AI PM Productivity</a></li>
+      <li><a href="#">AI Product Strategy</a></li>
+      <li><a href="#">Responsible AI</a></li>
+    </ul>
+  </div>
+
+  <div class="footer-col">
+    <h4>Resources</h4>
+    <ul>
+      <li><a href="#">Framework Library</a></li>
+      <li><a href="#">Templates</a></li>
+      <li><a href="#">Newsletter Archive</a></li>
+      <li><a href="#">About</a></li>
+    </ul>
+  </div>
+</footer>
+
+<div class="footer-bottom">
+  <span>© 2026 PM Pulse · All rights reserved</span>
+  <span>Built on real PM curriculum · Made with craft</span>
+</div>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="modal-overlay" onclick="closeModal(event)">
+  <div class="modal" id="modal-content">
+    <div class="modal-header">
+      <button class="modal-close" onclick="closeModal(null, true)">✕</button>
+      <span class="modal-tag" id="modal-tag"></span>
+      <h2 class="modal-title" id="modal-title"></h2>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
+<script>
+const articles = {
+  mindset: {
+    tag: 'Mindset · Module 01',
+    title: 'PM ≠ CEO. You Are the Chief Alignment Officer.',
+    body: `
+      <p>The internet loves calling the Product Manager the "CEO of the product." It sounds empowering. It shows up in job descriptions, LinkedIn profiles, and PM career guides. There's just one problem: it's wrong.</p>
+      <div class="key-insight">A CEO has formal authority, budget ownership, direct reports, and final decision power. A PM typically has none of these things.</div>
+      <h3>So what are you, actually?</h3>
+      <p>You are a <strong>Chief Alignment Officer</strong>. Your job is to hold together the competing pulls of user needs, business goals, engineering constraints, and design decisions — without formal authority over any of them.</p>
+      <p>This reframe matters enormously because it changes how you approach your work. The CEO model suggests that if you just come up with the right idea and make the right call, your job is done. The Alignment Officer model says your job is never done — alignment is continuous, fragile, and requires constant maintenance.</p>
+      <h3>The Four Alignment Planes</h3>
+      <ul>
+        <li><strong>User needs:</strong> What users actually need vs. what they say they want — often different things</li>
+        <li><strong>Business goals:</strong> Revenue, retention, engagement — whichever metrics your company optimizes for</li>
+        <li><strong>Engineering constraints:</strong> What's technically feasible, when, at what cost</li>
+        <li><strong>Design decisions:</strong> Usability, aesthetics, and the experience that holds everything together</li>
+      </ul>
+      <h3>The Three Core Pillars of PM Decision-Making</h3>
+      <p>Great PMs think across three pillars simultaneously: <strong>Desirability</strong> (do users want this?), <strong>Viability</strong> (can the business sustain this?), and <strong>Feasibility</strong> (can we build this with what we have?).</p>
+      <p>Every product decision you make is a negotiation across these three planes. The best PMs develop a near-instinctive sense of where the tension lies on any given decision.</p>
+      <div class="key-insight">"PM is not a role. It is a way of thinking. Tools can be learned. Frameworks can be memorized. Mindset must be built."</div>
+    `
+  },
+  problem: {
+    tag: 'Strategy · Module 02',
+    title: 'Fall in Love with the Problem, Not the Solution',
+    body: `
+      <p>There is a universal PM failure mode that cuts across companies, industries, and experience levels. It doesn't discriminate between junior and senior. It has killed more roadmaps than any technical debt ever has.</p>
+      <p>It is this: falling in love with your solution before you understand the problem.</p>
+      <h3>Why This Keeps Happening</h3>
+      <p>It's not a character flaw. It's structural. PMs face these pressures constantly:</p>
+      <ul>
+        <li>Stakeholders ask for features, not problem definitions</li>
+        <li>Engineers think in solutions — "what should I build?"</li>
+        <li>Managers want visible progress, not exploratory work</li>
+        <li>PMs want to look decisive and action-oriented</li>
+      </ul>
+      <div class="key-insight">The most expensive mistake in product development is solving the wrong problem — beautifully, on time, and under budget.</div>
+      <h3>What Goes Wrong When You Jump to Solutions</h3>
+      <ul>
+        <li>You build features that don't move metrics</li>
+        <li>You create rework cycles that destroy team morale</li>
+        <li>You train your users to ask for features instead of describing pain</li>
+        <li>You miss the actual opportunity hiding beneath the stated problem</li>
+      </ul>
+      <h3>The Problem Space Discipline</h3>
+      <p>The fix is a practice, not a framework. It's asking "why?" more than "what?" Sit in the problem longer than feels comfortable. Run user interviews before you write a single user story. Map the problem space with empathy maps and affinity diagrams before you open Figma.</p>
+      <p>The teams that ship products users love are the ones that stayed curious about the problem for longer than everyone else thought was necessary.</p>
+    `
+  },
+  'ai-strategy': {
+    tag: 'AI Strategy · Module 4.3',
+    title: 'AI-First vs AI-Added: A Decision Framework',
+    body: `
+      <p>Every PM building software today faces the same question: where does AI belong in our product? The answer has trillion-dollar implications — and most teams are getting it wrong in one of two ways.</p>
+      <p>They either bolt AI onto existing features as a marketing move (AI-washing), or they over-engineer an ML pipeline to solve a problem that a simple rule would have handled fine.</p>
+      <h3>The Core Distinction</h3>
+      <ul>
+        <li><strong>AI-First:</strong> AI is the product. Remove the AI, and there's no product. Think: ChatGPT, GitHub Copilot, Midjourney.</li>
+        <li><strong>AI-Added:</strong> AI enhances an existing product. Remove the AI, and the core product still works. Think: Gmail's Smart Reply, Spotify's recommendations.</li>
+      </ul>
+      <div class="key-insight">Most products should be AI-Added, not AI-First. The mistake is forcing AI-First thinking onto problems that don't require it.</div>
+      <h3>The Build / Buy / Integrate / Fine-tune Decision Tree</h3>
+      <ul>
+        <li><strong>Build:</strong> You have unique training data, the model is a core differentiator, and you can sustain the engineering cost</li>
+        <li><strong>Buy:</strong> A vendor has solved this better than you can, and differentiation isn't in the model itself</li>
+        <li><strong>Integrate (API):</strong> GPT-4, Claude, Gemini — good enough accuracy, fast to ship, opex not capex</li>
+        <li><strong>Fine-tune:</strong> You need domain-specific accuracy but don't need to train from scratch</li>
+      </ul>
+      <h3>The Privacy & Cost Overlay</h3>
+      <p>Every AI decision has two underrated dimensions: <strong>privacy</strong> (where does the data go? can you use cloud APIs?) and <strong>cost</strong> (what does inference cost at scale? does it hold at 10x users?). Build these into your decision matrix from day one, not as an afterthought.</p>
+    `
+  },
+  'ai-foundations': {
+    tag: 'AI Series · Module 4.1',
+    title: 'AI Foundations for PMs: LLMs, Embeddings & RAG Without the Jargon',
+    body: `
+      <p>You don't need to code an AI system to be an effective AI PM. But you do need to understand how it works well enough to make good product decisions, spot engineering BS, and write sensible requirements.</p>
+      <h3>GenAI vs Discriminative AI</h3>
+      <p><strong>Discriminative AI</strong> classifies existing data: spam or not spam, fraud or not fraud. <strong>Generative AI</strong> creates new content — text, images, code — by learning patterns in data. ChatGPT, Claude, Gemini are all generative.</p>
+      <h3>Tokens & Context Windows</h3>
+      <p>LLMs don't read words — they read tokens (roughly 3/4 of a word). The context window is how much the model can "see" at once. Understanding this helps you reason about: why does the model forget earlier in a conversation? Why do longer documents degrade quality?</p>
+      <h3>Training vs Inference</h3>
+      <p><strong>Training</strong> is when the model learns (expensive, done by AI companies). <strong>Inference</strong> is when it answers your question (the API call you pay per token for). As a PM, you mostly care about inference: latency, cost, accuracy.</p>
+      <h3>Embeddings & Vector Databases</h3>
+      <p>Embeddings turn text into numbers that capture meaning. "Cat" and "kitten" end up close in vector space. "Cat" and "taxation" do not. This is how semantic search works — and it's the foundation of RAG.</p>
+      <h3>RAG: Retrieval-Augmented Generation</h3>
+      <p>RAG is how you make an LLM answer questions from your own data. Instead of retraining the model (expensive), you retrieve relevant chunks of your documents and inject them into the prompt. This is behind most enterprise AI products shipping today.</p>
+      <div class="key-insight">Understanding RAG is what separates PMs who write credible AI specs from PMs who just use AI buzzwords.</div>
+    `
+  },
+  'ai-productivity': {
+    tag: 'AI Series · Module 4.2',
+    title: 'AI PM Productivity Stack',
+    body: `
+      <p>The best PMs using AI aren't replacing their judgment — they're compressing the time between insight and output. Here's what a modern AI-augmented PM workflow looks like.</p>
+      <h3>PRD Writing</h3>
+      <p>Use AI to draft structure and boilerplate, then pour your product judgment in. Prompt with your user research findings, the problem statement, and the constraints. Edit heavily. The AI knows structure; you know the product.</p>
+      <h3>User Research Synthesis</h3>
+      <p>Upload interview transcripts and ask for themes, contradictions, and unmet needs. AI can surface patterns across 20 interviews in minutes. But: always re-read the raw quotes yourself. The AI summarizes; the insight lives in the words.</p>
+      <h3>Competitive Analysis</h3>
+      <p>Use AI to quickly scan and summarize competitor positioning, pricing pages, and changelogs. Great for getting up to speed. Validate everything from primary sources.</p>
+      <h3>Stakeholder Communication</h3>
+      <p>Drafting monthly business reviews, engineering updates, and executive summaries — AI is excellent at adjusting tone and level of detail for different audiences. Give it your raw notes and the audience context.</p>
+      <div class="key-insight">AI makes you faster at the mechanical parts of PM work. Invest the saved time in the judgment-heavy parts: talking to users, making calls, and aligning stakeholders.</div>
+    `
+  },
+  'responsible-ai': {
+    tag: 'AI Series · Module 4.4',
+    title: 'Responsible AI — The PM\'s Pre-Launch Checklist',
+    body: `
+      <p>If you're shipping an AI feature without a responsible AI review, you're one incident away from a very bad week. Here's the checklist every PM should run before launch.</p>
+      <h3>Bias & Fairness</h3>
+      <ul>
+        <li>Does the model perform equally across demographic groups?</li>
+        <li>What was the training data? Is it representative?</li>
+        <li>Have you tested edge cases for historically underrepresented users?</li>
+      </ul>
+      <h3>Hallucinations & Accuracy</h3>
+      <ul>
+        <li>What's the error rate in production-like conditions?</li>
+        <li>Is the product designed so hallucinations cause real harm, or just inconvenience?</li>
+        <li>Is there a human review layer for high-stakes outputs?</li>
+      </ul>
+      <h3>Privacy</h3>
+      <ul>
+        <li>What user data is sent to the model? Is this disclosed?</li>
+        <li>Is the data used to train future models? Did users consent?</li>
+        <li>Are you compliant with GDPR, CCPA, or applicable regulations?</li>
+      </ul>
+      <h3>Accountability</h3>
+      <ul>
+        <li>Can users understand why the AI made a decision?</li>
+        <li>Is there a feedback mechanism and appeals process?</li>
+        <li>Who is accountable when the AI is wrong?</li>
+      </ul>
+      <div class="key-insight">Responsible AI is not a legal checkbox. It is a product quality issue. The PM owns it.</div>
+    `
+  },
+  'framework-align': {
+    tag: 'Framework',
+    title: 'The Alignment Triangle',
+    body: `<p>At the center of every good product decision is a triangle: User Needs, Business Goals, and Engineering Constraints. The PM's job is to find the intersection — and hold it against pressure from all three directions.</p><p>Most bad product decisions come from optimizing too hard for one vertex. Pure user advocacy ignores business viability. Pure business optimization creates products nobody wants to use. Pure engineering optimization leads to technically elegant solutions to problems nobody has.</p><div class="key-insight">The PM's superpower is the ability to speak all three languages fluently — and translate between them in real time.</div>`
+  },
+  'framework-ai': {
+    tag: 'Framework',
+    title: 'Build / Buy / Integrate — The AI Decision Matrix',
+    body: `<p>Before your team commits to an AI approach, run this framework. It prevents expensive misdirections and anchors the team on what the actual differentiator is.</p><ul><li><strong>Build from scratch:</strong> Rare. Reserved for companies with unique datasets, research capacity, and where model performance is the core moat.</li><li><strong>Fine-tune:</strong> Take a foundation model and adapt it with your domain data. Right when accuracy matters and generic models fall short.</li><li><strong>API Integration:</strong> Call OpenAI, Anthropic, or Google. Right for most product features. Fast, cost-effective, and good enough.</li><li><strong>Buy a vertical product:</strong> Pre-built AI solutions for your domain (e.g., AI for customer support). Right when the problem is generic enough that someone else has already solved it.</li></ul>`
+  },
+  'framework-northstar': {
+    tag: 'Framework',
+    title: 'The North Star Metric Framework',
+    body: `<p>A North Star Metric is the single number that best captures the value your product delivers to users, and is predictive of long-term business success. It's not your revenue number — that's an output. Your North Star is an input metric that, if it goes up, everything else should follow.</p><ul><li>Airbnb: Nights booked</li><li>Spotify: Time listening</li><li>Facebook (early): Daily active users</li><li>Slack: Messages sent within a team</li></ul><div class="key-insight">A good North Star Metric reflects user value, not just company value. If your users are getting something out of your product, the metric goes up. The business follows.</div>`
+  },
+  'user-interview': {
+    tag: 'Research · Module 2.3',
+    title: 'The Art of the User Interview: What Most PMs Get Wrong',
+    body: `<p>Most user interviews are disguised sales calls. The PM has a hypothesis. The interview is designed, consciously or not, to confirm it. The user senses this and tells the PM what they want to hear.</p><p>Real user interviews are uncomfortable. They start with open-ended questions about behavior, not opinions. They sit in silence after a question instead of filling the gap. They follow threads the user opens — not a predetermined script.</p><h3>The Flipkart Voice Search Case</h3><p>Classic example: users said they wanted voice search. Interviews confirmed it. The team built it. Usage was negligible. Why? Because users said they wanted it as a concept — they didn't actually want to speak to their phone in a crowded market while shopping for groceries.</p><div class="key-insight">The gap between what users say and what users do is where the real product insight lives.</div><h3>Good vs Bad Interview Questions</h3><ul><li>Bad: "Would you use this feature?" → Good: "Tell me about the last time you tried to do [X]."</li><li>Bad: "Do you think this is useful?" → Good: "How do you currently solve this problem?"</li><li>Bad: "What features do you want?" → Good: "What's the most frustrating part of [workflow]?"</li></ul>`
+  },
+  stakeholder: {
+    tag: 'Craft · Module 7–8',
+    title: 'Stakeholder Management: The Skills Nobody Teaches You',
+    body: `<p>No PM course teaches you what to do when an engineering lead disagrees with your roadmap in front of the VP. Or when a design director goes around you to the CEO. Or when a key stakeholder simply stops responding to your updates.</p><p>These are the real situations PM careers are made or broken in — and they're entirely about relationship management, not product frameworks.</p><h3>The Stakeholder Map</h3><p>Before any major initiative, map your stakeholders across two axes: level of influence, and current stance (supportive, neutral, skeptical). Your job is to move skeptics to neutral, and neutrals to supportive — before the review, not during it.</p><h3>The Slack Case Study</h3><p>The Session 8.2 case study shows a product team that lost stakeholder trust because they communicated progress, not decisions. Stakeholders don't want updates — they want to know: what's the call? Why? What do you need from me? Structuring every stakeholder communication around these three questions changes everything.</p><div class="key-insight">The best PM communicators don't ask for permission. They inform, invite reaction, and close. "Here's what we're doing, here's why, here's what I need from you by Friday."</div>`
+  },
+  metrics: {
+    tag: 'Analytics · Module 10',
+    title: 'Metrics That Matter: Finding Your North Star Without Getting Lost',
+    body: `<p>Most product dashboards are confusing noise. Teams track 40 metrics, none of which clearly connect to whether the product is actually creating value. Feature launches get celebrated with vanity metrics while retention quietly declines.</p><h3>The Metrics Hierarchy</h3><ul><li><strong>North Star Metric:</strong> One metric that captures core user value</li><li><strong>Input Metrics:</strong> 3–5 metrics that drive the North Star</li><li><strong>Health Metrics:</strong> Guardrails — things you don't want to break while optimizing the North Star</li></ul><h3>Common North Star Mistakes</h3><ul><li>Using revenue as the North Star (output, not input)</li><li>Using a metric your team can't directly influence</li><li>Choosing a metric that doesn't reflect user value</li><li>Having more than one North Star (they become none)</li></ul><div class="key-insight">If your North Star metric goes up but users are churning, your North Star is measuring the wrong thing.</div>`
+  },
+  prd: {
+    tag: 'Craft · Module 6.3',
+    title: 'Writing for Engineers: The PRD That Actually Gets Read',
+    body: `<p>The average PRD is a document engineers skim once, then implement based on their own interpretation of the requirements. The PM gets frustrated. The engineer gets frustrated. The product ships wrong.</p><p>The best PRDs are not longer — they are clearer. They answer exactly the questions engineers have, in the order they have them, without burying the answers in business context the engineer doesn't need.</p><h3>What Engineers Actually Need</h3><ul><li><strong>The problem:</strong> Why are we building this? What breaks if we don't?</li><li><strong>The constraints:</strong> What are the non-negotiables? What's flexible?</li><li><strong>The acceptance criteria:</strong> How will we know when it's done?</li><li><strong>The edge cases:</strong> What happens in the 5% scenarios?</li></ul><div class="key-insight">A PRD that an engineer can implement without a single clarifying question is a work of product craft. That's the standard to aim for.</div>`
+  },
+  gtm: {
+    tag: 'Strategy · Module 12',
+    title: 'GTM Strategy & Growth Mechanics for Product Teams',
+    body: `<p>Go-to-market strategy is not marketing's job alone. The PM owns the product decisions that determine whether a launch succeeds: pricing model, distribution channel, feature scope at launch, and the growth loops baked into the product itself.</p><h3>The PM's GTM Checklist</h3><ul><li>Who is the beachhead user? (Not everyone — who specifically?)</li><li>What is the product's natural distribution channel?</li><li>What's the activation moment — when does a user first get real value?</li><li>Is there a growth loop? (Virality, network effects, content creation)</li><li>What's the pricing model, and does it align with how users experience value?</li></ul><div class="key-insight">The best product launches are designed for distribution from day one, not adapted for it after launch.</div>`
+  }
+};
+
+function openModal(id) {
+  const article = articles[id];
+  if (!article) return;
+  document.getElementById('modal-tag').textContent = article.tag;
+  document.getElementById('modal-title').textContent = article.title;
+  document.getElementById('modal-body').innerHTML = article.body;
+  document.getElementById('modal-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal(event, force) {
+  if (force || (event && event.target === document.getElementById('modal-overlay'))) {
+    document.getElementById('modal-overlay').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') closeModal(null, true);
+});
+</script>
+</body>
+</html>
